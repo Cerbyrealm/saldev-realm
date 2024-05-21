@@ -1,0 +1,145 @@
+sudo su 
+apt-get update -y 
+
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+apt-get install unzip -y
+
+unzip awscliv2.zip
+
+sudo ./aws/install
+
+/usr/local/bin/aws --version
+
+Install EKSCTL :
+
+https://docs.aws.amazon.com/emr/latest/EMR-on-EKS-DevelopmentGuide/setting-up-eksctl.html 
+
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+
+sudo mv /tmp/eksctl /usr/local/bin
+
+eksctl version
+
+Install kubectl :
+
+https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.28.8/2024-04-19/bin/linux/amd64/kubectl
+
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.28.8/2024-04-19/bin/linux/amd64/kubectl.sha256
+
+sha256sum -c kubectl.sha256
+
+openssl sha1 -sha256 kubectl
+
+mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+
+echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+
+kubectl version --client
+
+curl https://raw.githubusercontent.com/Msocial123/k8-install-eks/master/eks-client.sh | sudo bash
+
+chmod +x ./kubectl
+
+or 
+
+chmod +x /root/bin/kubectl
+
+
+Login with IAM User - From Console :
+
+aws configure 
+
+Create a cluster : 
+
+
+eksctl create cluster --name eks-cluster --version 1.28 -- region ap-southeast-1 --nodegroup-name test-linux --node-type t2.medium --node 2 
+
+To connect a specific cluster :
+
+aws eks update-kubeconfig –-name test-cluster –-region ap-south-1
+Kubernetes Commands :
+
+kubectl get nodes 
+
+kubectl apply -f manifest-filename 
+
+kubectl get pods  - To see all the Pods 
+Kubectl get deployments - To See all the deployment
+kubectl get namespace - To see all the namespaces 
+
+To get a resources on a specific namepace : 
+
+kubectl get pods or deployments -n namespace name 
+
+Describe the pod to see the logs :
+
+kubectl describe pod podname 
+kubectl describe deployment deploymentname 
+
+
+Application URL :
+
+http://aed931533cc1d4be1939d17c73bc6afe-917006222.us-west-1.elb.amazonaws.com:3000/
+
+
+Deploy the MicroService :
+
+git clone https://github.com/GoogleCloudPlatform/microservices-demo
+cd microservices-demo/
+
+kubectl apply -f ./release/kubernetes-manifests.yaml
+
+Kubectl get svc -- Check the FrondEnd - Exteral - Get the Load Balancer URL - We can access 
+
+
+Installing Jenkins on EC2 :
+
+https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/
+
+17/05/2024 : Friday 
+
+update-alternatives 
+
+update-alternatives --config java 
+
+curl https://raw.githubusercontent.com/Msocial123/docker-install-commands/master/docker-install.sh | sudo bash
+
+https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-docker.html
+
+Install Docker
+
+Install AWS Credencials 
+
+Install AWS Steps 
+
+Install Helm Chart : 
+
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+
+Connect to cluster :
+
+aws eks update-kubeconfig –name test-cluster –region ap-south-1
+
+Project Repo :
+
+https://github.com/Msocial123/catalogue.git
+
+https://digitalvarys.com/jenkins-declarative-pipeline-with-examples/
+
+Install helm on Jenkins :
+
+wget https://get.helm.sh/helm-v3.9.3-linux-amd64.tar.gz
+tar -xvzf helm-v3.9.3-linux-amd64.tar.gz
+sudo chmod +x linux-amd64/helm && sudo mv linux-amd64/helm /usr/bin/helm
+helm version --short
+
+wget https://get.helm.sh/helm-v3.9.3-linux-amd64.tar.gz
+
+
